@@ -1,8 +1,12 @@
-word = "pumpkin"
+import random
 
+words = ["pumpkin", "ghost", "candy", "costume", "leaves","orange", "black", "fall", "autumn"]
+word = random.choice(words)
 answer= []
 guesses =[]
 counter = 0
+
+
 
 while counter < len(set(word)):  #returns only UNIQUE characters
     

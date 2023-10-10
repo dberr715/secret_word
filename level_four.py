@@ -13,6 +13,7 @@ answer= []
 guesses =[]
 counter = 0
 word = ""
+attempts = 6
 
 category = input("Type one of the following: winter, summer, or fall: ")
 
@@ -23,27 +24,31 @@ elif category == "summer":
 else:   
     word = fall_word
 
-    
-while counter < len(set(word)):  #returns only UNIQUE characters
-   
+while counter < len(set(word)) and attempts > 0:
     guess= input("Guess a single letter: ")
 
-    if len(guess) != 1:
+    if len (guess) != 1:
         print("Input ONLY 1 letter")
         continue
-    if guess in guesses:
+    elif guess in guesses:
         print("Letter already guessed")
-        continue 
-    guesses.append(guess)
-    if guess in word:
+        continue
+    elif guess in word:
         answer.append(guess)
         counter += 1
     else:
+        print("\n")
         print("Guess again")
+        attempts -= 1
+        print(f"CAREFUL! You only have {attempts} remaining! ")
     for letter in word:
         if letter in answer:
             print(letter , end="")
         else:
             print ("_", end= "")
+    print("\n")
 
-        
+if set(answer) == set(word):
+    print("YOU DID IT! Wahoo!")
+else:
+    print(f"Sorry you didn't guess in the number of attempts. The word was {word}")
